@@ -37,8 +37,15 @@ if sys.version_info[0] >= 3:
     xrange = range
 
 def cube_vertices(x, y, z, n):
-    """ Return the vertices of the cube at position x, y, z with size 2*n.
-    """
+   """ Return the vertices of the cube at position x, y, z with size 2*n.
+     Parameters
+    ----------
+    x, y, z - position coordinates
+	n - half of the edge length of the cube
+    Returns
+    -------
+    cube vertices: 24-tuple of ints
+	"""
     return [
         x-n,y+n,z-n, x-n,y+n,z+n, x+n,y+n,z+n, x+n,y+n,z-n,  # top
         x-n,y-n,z-n, x+n,y-n,z-n, x+n,y-n,z+n, x-n,y-n,z+n,  # bottom
@@ -51,6 +58,13 @@ def cube_vertices(x, y, z, n):
 
 def tex_coord(x, y, n=4):
     """ Return the bounding vertices of the texture square.
+	Parameters
+    ----------
+    x, y - 2D position coordinates of texture file texture.png
+	n = 4 - hard coded size of texture in file
+    Returns
+    -------
+   8 integers, the bounding coordinates of each texture square
     """
     m = 1.0 / n
     dx = x * m
@@ -60,7 +74,13 @@ def tex_coord(x, y, n=4):
 
 def tex_coords(top, bottom, side):
     """ Return a list of the texture squares for the top, bottom and side.
-    """
+    Parameters
+    ----------
+    top, bottom, side - coordinates of the sides of the cube to be textured
+    Returns
+    -------
+    result - tuple of texture mappings for the 6 sides of the block
+	"""
     top = tex_coord(*top)
     bottom = tex_coord(*bottom)
     side = tex_coord(*side)
